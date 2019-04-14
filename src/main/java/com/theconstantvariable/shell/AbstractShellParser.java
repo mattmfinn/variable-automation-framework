@@ -13,22 +13,31 @@ import java.util.List;
 
 abstract class AbstractShellParser
 {
-    private final static String androidQueryCommand = "adb";
-    private final Terminal terminal;
 
-    protected AbstractShellParser() throws java.io.IOException
+    protected final static String androidTerminalTool= "adb";
+    protected final static String iOSTerminalTool = "ideviceinfo";
+    protected final static String iOSOptionListAllUDID = "-l";
+
+    // All implementations will need to run a basic command with a string
+    public void runShellCommand(String command) throws IOException
     {
-        terminal= createTerminal();
+
     }
 
-    private static Terminal createTerminal() throws IOException
+    public static String getAndroidTerminalTool()
     {
-        TerminalBuilder builder = new TerminalBuilder.builder();
-        return builder.build();
+        return androidTerminalTool;
     }
 
-    public List<String> runShellCommand(String command)
+    public static String getiOSTerminalTool()
     {
-        return new ArrayList<String>();
+        return iOSTerminalTool;
     }
+
+    public static String getiOSOptionListAllUDID()
+    {
+        return iOSOptionListAllUDID;
+    }
+
+
 }
