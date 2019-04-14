@@ -1,10 +1,10 @@
-package com.theconstantvariable.environment;
+package com.theconstantvariable.environment.parse;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.List;
 
-public class ParseLocalParseEnvironments implements ParseEnvironments
+public class ParseLocalEnvironments implements ParseEnvironments
 {
 
     @Override

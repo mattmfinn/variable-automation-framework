@@ -1,37 +1,24 @@
 package com.theconstantvariable;
 
 
-import com.theconstantvariable.driver.DeviceLockStatus;
-import com.theconstantvariable.enums.LocalDeviceCommands;
-import com.theconstantvariable.environment.JSONParser;
-import com.theconstantvariable.shell.ShellParserLocal;
-import io.appium.java_client.android.AndroidDriver;
+import com.theconstantvariable.environment.capabilities.CapabilitiesFactory;
+import com.theconstantvariable.environment.capabilities.MobileCapabilities;
+import com.theconstantvariable.environment.parse.JSONParser;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class Example
 {
-    public static void main(String[] args) throws IOException
+    public static void main(String[] args)
     {
-        /*DeviceLockStatus deviceLockStatus = new DeviceLockStatus();
-
-        ShellParserLocal shellParserLocal = new ShellParserLocal();
-
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        ArrayList<String> devices = shellParserLocal.findConnectedDevices(LocalDeviceCommands.ANDROID_DEVICE_QUERY);
-        capabilities.setCapability
-                ("deviceName", devices.get(0));
-        capabilities.setCapability("platformName", "Android");
-        capabilities.setCapability("browserName", "Chrome");
-
-        AndroidDriver driver = new AndroidDriver(capabilities);
-        if(deviceLockStatus.isAndroidDeviceLocked(driver)) driver.quit(); System.out.println("**The device is locked!**");
-        driver.getBatteryInfo();
-        driver.quit();*/
-
         JSONParser jsonParser = new JSONParser();
-        jsonParser.parseEnvironments("android");
+        ArrayList<MobileCapabilities> capabilities = jsonParser.parseEnvironments();
+        System.out.println(capabilities.size());
+        System.out.println(capabilities.get(0).getPlatformName() + "*******************");
+        System.out.println("Working Directory = " +
+                System.getProperty("user.dir"));
+        CapabilitiesFactory capabilitiesFactory = new CapabilitiesFactory(jsonParser);
+        ArrayList<DesiredCapabilities> capabilities1 = capabilitiesFactory.makeCapabilities();
     }
 }

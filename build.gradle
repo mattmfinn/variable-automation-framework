@@ -16,5 +16,5 @@ dependencies {
     implementation 'io.appium:java-client:7.0.0'
     implementation 'org.seleniumhq.selenium:selenium-remote-driver:3.141.59'
     implementation 'org.jline:jline-terminal:3.11.0'
-    implementation 'com.fasterxml:oss-parent:35'
+    implementation 'com.jwebmp.jackson.core:jackson-databind:0.66.0.1'
 }

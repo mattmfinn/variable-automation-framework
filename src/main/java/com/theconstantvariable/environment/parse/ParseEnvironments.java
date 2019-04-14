@@ -1,4 +1,4 @@
-package com.theconstantvariable.environment;
+package com.theconstantvariable.environment.parse;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
 

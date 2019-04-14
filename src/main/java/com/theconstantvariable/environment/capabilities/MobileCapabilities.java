@@ -1,6 +1,6 @@
-package com.theconstantvariable.environment;
+package com.theconstantvariable.environment.capabilities;
 
-public class Environment
+public class MobileCapabilities extends CapabilitiesInterface
 {
     private String platformName;
     private String deviceName;
