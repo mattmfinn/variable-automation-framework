@@ -5,7 +5,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface Environments {
+public interface ParseEnvironments
+{
 
     public List<DesiredCapabilities> environments = new ArrayList<>();
 

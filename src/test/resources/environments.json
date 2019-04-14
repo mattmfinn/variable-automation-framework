@@ -1,0 +1,14 @@
+[{
+      "Environment": {
+        "platformName": "iOS",
+        "platformVersion": "",
+        "deviceName": "",
+        "browserName": "Chrome"
+      },
+      "Environment": {
+        "platformVersion": "",
+        "platformName": "Android",
+        "deviceName": "",
+        "browserName": "Chrome"
+      }
+    }]
