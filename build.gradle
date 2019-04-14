@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+group 'com.theconstantvariable.variableautomationframework'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.testng:testng:7.0.0-beta3'
+    implementation 'io.appium:java-client:7.0.0'
+    implementation 'org.seleniumhq.selenium:selenium-remote-driver:3.141.59'
+    implementation 'org.jline:jline-terminal:3.11.0'
+}
