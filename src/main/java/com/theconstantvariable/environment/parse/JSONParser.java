@@ -11,12 +11,8 @@ public class JSONParser
 {
 
     // TODO: Populate jsonEnvironments and platform from DriverFactory DataProvider?
-    private String platform = "ios";
-    private String jsonEnvironments = "./src/test/resources/localMobileEnvironments.json";
-
-    public JSONParser()
-    {
-    }
+    private String platform;
+    private String jsonEnvironments;
 
     public JSONParser(String platform, String jsonEnvironments)
     {
