@@ -18,3 +18,9 @@ dependencies {
     implementation 'org.jline:jline-terminal:3.11.0'
     implementation 'com.jwebmp.jackson.core:jackson-databind:0.66.0.1'
 }
+
+test {
+    useTestNG()
+    systemProperty "platform", System.getProperty("platform")
+    systemProperty "jsonEnvironments", System.getProperty("jsonEnvironments")
+}

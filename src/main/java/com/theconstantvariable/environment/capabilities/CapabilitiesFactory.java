@@ -16,13 +16,14 @@ public class CapabilitiesFactory
         this.jsonParser = jsonParser;
     }
 
-    public ArrayList<DesiredCapabilities> makeCapabilities()
+    public DesiredCapabilities[] makeCapabilities()
     {
         try
         {
-            ArrayList<DesiredCapabilities> finalCapabilities = new ArrayList<>();
             ArrayList<MobileCapabilities> rawCapabilities = jsonParser.parseEnvironments();
+            DesiredCapabilities finalCapabilities[] = new DesiredCapabilities[rawCapabilities.size()];
 
+            int index = 0;
             for (MobileCapabilities m : rawCapabilities)
             {
                 DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -30,7 +31,8 @@ public class CapabilitiesFactory
                 {
                     capabilities.setCapability(method.getName(), method.getDefaultValue());
                 }
-                finalCapabilities.add(capabilities);
+                finalCapabilities[index] = capabilities;
+                index++;
             }
             return finalCapabilities;
         } catch (Exception e)
