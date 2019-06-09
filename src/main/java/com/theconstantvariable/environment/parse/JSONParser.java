@@ -14,9 +14,8 @@ public class JSONParser
     private String platform;
     private String jsonEnvironments;
 
-    public JSONParser(String platform, String jsonEnvironments)
+    public JSONParser(String jsonEnvironments)
     {
-        this.platform = platform;
         this.jsonEnvironments = jsonEnvironments;
     }
 
@@ -27,6 +26,7 @@ public class JSONParser
             FileReader fileReader = new FileReader(jsonEnvironments);
             ObjectMapper objectMapper = new ObjectMapper();
             MobileCapabilities[] capabilities = objectMapper.readValue(fileReader, MobileCapabilities[].class);
+            platform = capabilities[0].platformName.toLowerCase();
             return filterEnvironments(capabilities, platform);
         } catch (IOException e)
         {
@@ -40,7 +40,7 @@ public class JSONParser
         ArrayList<MobileCapabilities> filteredCapabilities = new ArrayList<>();
         for (int i = 0; i < capabilities.length; i++)
         {
-            if (capabilities[i].getPlatformName().toLowerCase().equals(platform.toLowerCase()))
+            if (capabilities[i].platformName.toLowerCase().contains(platform.toLowerCase()))
                 filteredCapabilities.add(capabilities[i]);
         }
         return filteredCapabilities;

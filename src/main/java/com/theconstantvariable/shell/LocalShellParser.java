@@ -8,16 +8,15 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
-public class ShellParserLocal extends AbstractShellParser
+public class LocalShellParser extends AbstractShellParser
 {
 
     ProcessBuilder builder;
     ArrayList<String> androidTextToStrip = new ArrayList<>();
     ArrayList<String> iOSTextToStrip = new ArrayList<>();
 
-    public ShellParserLocal()
+    public LocalShellParser()
     {
         createProcessBuilder();
         androidTextToStrip.add("List of devices attached");
@@ -47,10 +46,10 @@ public class ShellParserLocal extends AbstractShellParser
         return connectedDevices;
     }
 
-    private ArrayList<String> stripSpamResults(ArrayList<String> list, LocalDeviceCommands commands)
+    private ArrayList<String> cleanupResults(ArrayList<String> list, LocalDeviceCommands commands)
     {
 
-        if(commands.platform == "android")
+        if (commands.tool == LocalDeviceCommands.ANDROID_DEVICE_QUERY.tool)
         {
 
             for(int i = 0; i < list.size(); i++)
@@ -66,7 +65,7 @@ public class ShellParserLocal extends AbstractShellParser
             }
         }
 
-        if(commands.platform == "ios")
+        if (commands.tool == LocalDeviceCommands.IOS_DEVICE_QUERY.tool)
         {
             for(String s : iOSTextToStrip)
             {
@@ -86,7 +85,7 @@ public class ShellParserLocal extends AbstractShellParser
         this.builder.command(commands.tool, commands.command);
         ArrayList results = executeAndReturnOutput(this.builder);
 
-        return stripSpamResults(results, commands);
+        return cleanupResults(results, commands);
     }
 
 }

@@ -1,5 +1,8 @@
 package examples;
 
+import com.theconstantvariable.pageobjectmodel.testobjects.BaseMobileTestObject;
+import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.Test;
 
 /**
@@ -8,13 +11,18 @@ import org.testng.annotations.Test;
  * framework to check if a device is free.
  */
 
-public class MultipleNavigationsTest
+public class MultipleNavigationsTest extends BaseMobileTestObject
 {
 
-    @Test
-    public void multipleNavigationsTest()
-    {
+    AndroidDriver driver;
 
+    @Test(dataProvider = "local")
+    public void multipleNavigationsTest(DesiredCapabilities desiredCapabilities) throws Exception
+    {
+        driver = setUp(desiredCapabilities);
+        driver.navigate().to("www.theconstantvariable.com");
+        Thread.sleep(100000);
+        driver.quit();
     }
 
 }

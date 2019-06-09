@@ -3,7 +3,7 @@ package com.theconstantvariable.environment.capabilities;
 import com.theconstantvariable.environment.parse.JSONParser;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import java.lang.reflect.Method;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public class CapabilitiesFactory
@@ -27,9 +27,9 @@ public class CapabilitiesFactory
             for (MobileCapabilities m : rawCapabilities)
             {
                 DesiredCapabilities capabilities = new DesiredCapabilities();
-                for (Method method : m.getClass().getMethods())
+                for (Field field : m.getClass().getDeclaredFields())
                 {
-                    capabilities.setCapability(method.getName(), method.getDefaultValue());
+                    capabilities.setCapability(field.getName(), field.get(m));
                 }
                 finalCapabilities[index] = capabilities;
                 index++;

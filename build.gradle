@@ -21,6 +21,4 @@ dependencies {
 
 test {
     useTestNG()
-    systemProperty "platform", System.getProperty("platform")
-    systemProperty "jsonEnvironments", System.getProperty("jsonEnvironments")
 }

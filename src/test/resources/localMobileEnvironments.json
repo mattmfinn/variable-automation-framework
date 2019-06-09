@@ -3,12 +3,6 @@
     "platformName": "iOS",
     "platformVersion": "",
     "deviceName": "",
-    "browserName": "Chrome"
-  },
-  {
-    "platformVersion": "",
-    "platformName": "Android",
-    "deviceName": "",
-    "browserName": "Chrome"
+    "browserName": "Safari"
   }
 ]
