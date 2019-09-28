@@ -1,8 +1,10 @@
 [
   {
-    "platformName": "iOS",
+    "automationName": "uiautomator2",
+    "platformName": "Android",
     "platformVersion": "",
     "deviceName": "",
-    "browserName": "Safari"
+    "browserName": "",
+    "app": "/home/matt/AndroidStudioProjects/Minted/app/debug/app-debug.apk"
   }
 ]
