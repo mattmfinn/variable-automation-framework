@@ -26,6 +26,7 @@ public class MultipleNavigationsTest extends BaseMobileTestObject
     @Test(dataProvider = "local")
     public void multipleNavigationsTest(Object[] capabilities) throws InterruptedException
     {
+        driver.launchApp();
         Thread.sleep(10000);
         Assert.assertTrue(driver.findElement(By.id("com.theconstantvariable:id/statusBarBackground")).isDisplayed());
     }

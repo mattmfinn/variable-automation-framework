@@ -1,7 +1,6 @@
-package com.theconstantvariable.pageobjectmodel.screenobjects.mobile;
+package com.theconstantvariable.pageobjectmodel.screenobjects.base;
 
 import com.theconstantvariable.enums.SwipeDirection;
-import io.appium.java_client.MobileDriver;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.touch.offset.PointOption;
@@ -10,16 +9,16 @@ import org.openqa.selenium.Dimension;
 /**
  * For all work-arounds and specific helper methods to mobile tests and mobile Screen Objects that are not needed by
  * web testing.
- * TODO: Wrap swipe method to work based on percentage of screen space rather than hard corded pixels
+ * TODO: Add support for LEFT & RIGHT
  */
-public class BaseScreenObject extends MobileBaseObject
+public class BaseScreenObject
 {
 
     private AndroidDriver driver;
 
     public BaseScreenObject(AndroidDriver driver)
     {
-        driver = this.driver;
+        this.driver = driver;
     }
 
     /**
@@ -32,25 +31,25 @@ public class BaseScreenObject extends MobileBaseObject
         System.out.println("Size of device: " + dimension.getWidth() + " by " + dimension.getHeight());
         int xCenter = (dimension.getWidth() / 2);
         int yCenter = (dimension.getHeight() / 2);
-        int swipeEndPoint;
+        int swipeEndPosition;
 
         // For Appium, down means higher pixel location, up means lower pixel location (0 is screen bottom)
-        if (direction == SwipeDirection.DOWN) swipeEndPoint = ((dimension.getHeight() / 100) * percent);
-        else if (direction == SwipeDirection.UP) swipeEndPoint = ((dimension.getHeight() / 100) * percent);
+        if (direction == SwipeDirection.DOWN) swipeEndPosition = ((dimension.getHeight() / 100) * percent);
+        else if (direction == SwipeDirection.UP) swipeEndPosition = ((dimension.getHeight() / 100) * percent);
         else
             throw new IllegalArgumentException("No valid swipe direction specified. Options: SwipeDirection.UP, SwipeDirection.DOWN");
 
-        if ((swipeEndPoint > (yCenter * 2)) || swipeEndPoint < 0)
+        if ((swipeEndPosition > (yCenter * 2)) || swipeEndPosition < 0)
         {
             throw new IllegalArgumentException("You are attempting to swipe an area larger than half the size " +
-                    "of the screen! This cannot be done as swiping begins from the center (Y Axis). swipeEndPoint value: " + swipeEndPoint);
+                    "of the screen! This cannot be done as swiping begins from the center (Y Axis). swipeEndPosition value: " + swipeEndPosition);
         } else
         {
-            System.out.println("Attempting to swipe to location: " + swipeEndPoint +
+            System.out.println("Attempting to swipe to location: " + swipeEndPosition +
                     " - from location X: " + xCenter + " from location Y: " + yCenter);
             TouchAction touchAction = new TouchAction(driver);
             touchAction.press(new PointOption().withCoordinates(xCenter, yCenter))
-                    .moveTo(new PointOption().withCoordinates(0, -swipeEndPoint)).release().perform();
+                    .moveTo(new PointOption().withCoordinates(0, -swipeEndPosition)).release().perform();
         }
     }
 }
