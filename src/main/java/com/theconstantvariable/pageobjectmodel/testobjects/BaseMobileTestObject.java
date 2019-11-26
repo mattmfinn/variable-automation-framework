@@ -1,5 +1,8 @@
 package com.theconstantvariable.pageobjectmodel.testobjects;
 
+import com.github.dozermapper.core.DozerBeanMapper;
+import com.github.dozermapper.core.DozerBeanMapperBuilder;
+import com.github.dozermapper.core.Mapper;
 import com.theconstantvariable.enums.LocalDeviceCommands;
 import com.theconstantvariable.environment.capabilities.CapabilitiesFactory;
 import com.theconstantvariable.environment.parse.JSONParser;
@@ -20,7 +23,7 @@ public class BaseMobileTestObject extends BaseObject
 {
     public AndroidDriver driver;
     private static ProcessBuilderBase processBuilderBase = new ProcessBuilderBase();
-    private final static String jsonEnvironments = "/home/matt/IdeaProjects/variable-automation-framework/src/test/resources/localMobileEnvironments.json";
+    private final static String jsonEnvironments = "/Users/matthome/IdeaProjects/variable-automation-framework/src/test/resources/localMobileEnvironments.json";
 
     @DataProvider(name = "local")
     public static Object[] environments()
@@ -48,8 +51,6 @@ public class BaseMobileTestObject extends BaseObject
         try
         {
             // TODO read JSON here and create drivers, have data provider return JSON
-             //mapper = new Dozer
-            //DesiredCapabilities desiredCapabilities = mapper.writeva;
             DesiredCapabilities capabilities = transformObject(object);
             capabilities.setCapability("deviceName", setDeviceName());
             driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
