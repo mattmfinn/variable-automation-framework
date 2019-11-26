@@ -12,11 +12,13 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.testng:testng:7.0.0-beta3'
+    testImplementation 'org.testng:testng:+'
     implementation 'io.appium:java-client:7.0.0'
     implementation 'org.seleniumhq.selenium:selenium-remote-driver:3.141.59'
     implementation 'org.jline:jline-terminal:3.11.0'
     implementation 'com.jwebmp.jackson.core:jackson-databind:0.66.0.1'
+    implementation 'com.github.dozermapper:dozer-parent:6.5.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
 }
 
 test {

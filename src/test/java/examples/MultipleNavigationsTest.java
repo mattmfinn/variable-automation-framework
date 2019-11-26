@@ -30,5 +30,4 @@ public class MultipleNavigationsTest extends BaseMobileTestObject
         Thread.sleep(10000);
         Assert.assertTrue(driver.findElement(By.id("com.theconstantvariable:id/statusBarBackground")).isDisplayed());
     }
-
 }

@@ -21,7 +21,7 @@ public class CapabilitiesFactory
         try
         {
             ArrayList<MobileCapabilities> rawCapabilities = jsonParser.parseEnvironments();
-            DesiredCapabilities finalCapabilities[] = new DesiredCapabilities[rawCapabilities.size()];
+            DesiredCapabilities[] finalCapabilities = new DesiredCapabilities[rawCapabilities.size()];
 
             int index = 0;
             for (MobileCapabilities m : rawCapabilities)

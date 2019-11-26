@@ -4,18 +4,13 @@ import com.theconstantvariable.enums.LocalDeviceCommands;
 import com.theconstantvariable.environment.capabilities.CapabilitiesFactory;
 import com.theconstantvariable.environment.parse.JSONParser;
 import com.theconstantvariable.pageobjectmodel.screenobjects.BaseObject;
-import com.theconstantvariable.shell.LocalShellParser;
+import com.theconstantvariable.shell.ProcessBuilderBase;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.service.local.AppiumDriverLocalService;
-import io.appium.java_client.service.local.AppiumServiceBuilder;
-import org.aspectj.lang.annotation.After;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 
-import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.URL;
@@ -24,7 +19,7 @@ import java.util.Arrays;
 public class BaseMobileTestObject extends BaseObject
 {
     public AndroidDriver driver;
-    private static LocalShellParser localShellParser = new LocalShellParser();
+    private static ProcessBuilderBase processBuilderBase = new ProcessBuilderBase();
     private final static String jsonEnvironments = "/home/matt/IdeaProjects/variable-automation-framework/src/test/resources/localMobileEnvironments.json";
 
     @DataProvider(name = "local")
@@ -52,6 +47,9 @@ public class BaseMobileTestObject extends BaseObject
     {
         try
         {
+            // TODO read JSON here and create drivers, have data provider return JSON
+             //mapper = new Dozer
+            //DesiredCapabilities desiredCapabilities = mapper.writeva;
             DesiredCapabilities capabilities = transformObject(object);
             capabilities.setCapability("deviceName", setDeviceName());
             driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
@@ -64,12 +62,15 @@ public class BaseMobileTestObject extends BaseObject
 
     private DesiredCapabilities transformObject(Object object)
     {
+        System.out.println(object.getClass());
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        for(Field field : object.getClass().getFields())
+        //MobileCapabilities mobileCapabilities = new ObjectMapper().readValue(object, MobileCapabilities.class);
+        for(Field field : object.getClass().getDeclaredFields())
         {
             try
             {
                 desiredCapabilities.setCapability(field.getName(), field.get(field.getName()));
+                System.out.println("Field name: " + field.getName());
             }
             catch (IllegalAccessException e)
             {
@@ -81,6 +82,6 @@ public class BaseMobileTestObject extends BaseObject
 
     private static String setDeviceName() throws IOException
     {
-        return localShellParser.findConnectedDevices(LocalDeviceCommands.ANDROID_DEVICE_QUERY).get(0);
+        return processBuilderBase.findConnectedDevices(LocalDeviceCommands.ANDROID_DEVICE_QUERY).get(0);
     }
 }
